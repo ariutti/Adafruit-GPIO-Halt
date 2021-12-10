@@ -41,3 +41,9 @@ If you want to check the status of the service:
 ```
 sudo systemctl status gpio-halt.service
 ```
+
+edit 10/12/2021 - Nicola Ariutti
+If you want the service to NOT start automatically anymore in the future:
+```
+sudo systemctl disable <my-service-name>.service
+```

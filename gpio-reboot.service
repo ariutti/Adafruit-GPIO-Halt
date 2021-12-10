@@ -1,0 +1,10 @@
+[Unit]
+Description=GPIO reboot (pin 16 to ground)
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/local/sbin/gpio-reboot 16 10000
+
+[Install]
+WantedBy=multi-user.target

@@ -1,4 +1,6 @@
-EXECS  = gpio-halt
+EXEC_1  = gpio-shutdown 
+EXEC_2  = gpio-reboot
+
 CFLAGS = -Wall -Ofast -fomit-frame-pointer -funroll-loops -s \
  -I/opt/vc/include \
  -I/opt/vc/include/interface/vcos/pthreads \
@@ -8,15 +10,22 @@ CFLAGS = -Wall -Ofast -fomit-frame-pointer -funroll-loops -s \
 LIBS   = -lbcm_host
 CC     = gcc $(CFLAGS)
 
-all: $(EXECS)
+all: $(EXEC_1) $(EXEC_2)
 
-gpio-halt: gpio-halt.c
+gpio-shutdown: gpio-shutdown.c
+	$(CC) $< $(LIBS) -o $@
+	strip $@
+	
+gpio-reboot: gpio-reboot.c
 	$(CC) $< $(LIBS) -o $@
 	strip $@
 
 install:
-	mv $(EXECS) /usr/local/sbin
-	chown root:root /usr/local/sbin/$(EXECS)
+	mv $(EXEC_1) /usr/local/sbin
+	chown root:root /usr/local/sbin/$(EXEC_1)
+	mv $(EXEC_2) /usr/local/sbin
+	chown root:root /usr/local/sbin/$(EXEC_2)
 
 clean:
-	rm -f $(EXECS)
+	rm -f /usr/local/sbin/$(EXEC_1)
+	rm -f /usr/local/sbin/$(EXEC_2)

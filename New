@@ -1,0 +1,2 @@
+sudo cp gpio-shutdown.service /etc/systemd/system/
+sudo cp gpio-reboot.service /etc/systemd/system/

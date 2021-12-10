@@ -1,0 +1,10 @@
+[Unit]
+Description=GPIO shutdown (pin 21 to ground)
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/local/sbin/gpio-shutdown 21 10000
+
+[Install]
+WantedBy=multi-user.target
